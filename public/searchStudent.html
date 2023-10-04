@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Search Student by Last Name</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <label for="lastName">Last Name:</label>
+  <input type="text" id="lastName" name="lastName"><br><br>
+
+  <button onclick="searchStudent()">Search</button>
+  <br>
+  <br>
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>GPA</th>
+        <th>Enrolled</th>
+      </tr>
+    </thead>
+    <tbody id="studentList">
+    </tbody>
+  </table>
+  <script>
+
+    function searchStudent() {
+      var lastName_val = $("#lastName").val();
+
+      $.ajax({
+        url: "http://localhost:5678/searchStudent/" + lastName_val,
+        type: "get",
+        success: function (students) {
+          console.log(students);
+          var studentListHtml = "";
+          students.forEach(function (student) {
+            studentListHtml += `
+              <tr>
+                <td>${student.record_id}</td>
+                <td>${student.first_name}</td>
+                <td>${student.last_name}</td>
+                <td>${student.gpa}</td>
+                <td>${student.enrolled}</td>
+              </tr>
+            `;
+          });
+          $("#studentList").html(studentListHtml);
+        },
+        error: function (xhr) {
+          console.log(xhr.responseText)
+          alert('Error: ' + xhr.responseText);
+        }
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>

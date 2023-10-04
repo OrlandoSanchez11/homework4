@@ -1,0 +1,61 @@
+<!-- filename: addStudent.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Add Student</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <label for="fname">First Name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <label for="lname">Last Name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+
+  <label for="gpa">GPA:</label>
+  <input type="text" id="gpa" name="gpa"><br><br>
+
+  <label for="enrolled">Enrolled:</label>
+  <input type="text" id="enrolled" name="enrolled"><br><br>
+
+  <button onclick="sendStudent()">Submit</button>
+  <br>
+  <br>
+  <div id="mydiv" name="mydiv"></div>
+  <script>
+
+    function sendStudent() {
+      var fname_val = $("#fname").val();
+      var lname_val = $("#lname").val();
+      var gpa_val = $("#gpa").val();
+      var enrolled_val = $("#enrolled").val();
+
+      $.ajax({
+        url: "http://localhost:5678/students",
+        type: "post",
+        data: {
+          first_name: fname_val,
+          last_name: lname_val,
+          gpa: gpa_val,
+          enrolled: enrolled_val
+        },
+        success: function (response) {
+          console.log(response);
+          $("#mydiv").text(response.message);
+        },
+        error: function (xhr) {
+          console.log(xhr.responseText);
+          $("#mydiv").text('Error: ' + xhr.responseText);
+        }
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>

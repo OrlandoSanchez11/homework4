@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Display Student</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <label for="studentId">Student ID:</label>
+  <input type="text" id="studentId" name="studentId"><br><br>
+
+  <button onclick="displayStudent()">Display</button>
+  <br>
+  <br>
+  <div id="studentDetails" name="studentDetails"></div>
+  <script>
+
+    function displayStudent() {
+      var studentId_val = $("#studentId").val();
+
+      $.ajax({
+        url: "http://localhost:5678/students/" + studentId_val,
+        type: "get",
+        success: function (student) {
+          console.log(student);
+          if (student) {
+            var studentDetailsHtml = `
+              <h2>Student Details</h2>
+              <p><strong>ID:</strong> ${student.record_id}</p>
+              <p><strong>First Name:</strong> ${student.first_name}</p>
+              <p><strong>Last Name:</strong> ${student.last_name}</p>
+              <p><strong>GPA:</strong> ${student.gpa}</p>
+              <p><strong>Enrolled:</strong> ${student.enrolled}</p>
+            `;
+            $("#studentDetails").html(studentDetailsHtml);
+          } else {
+            $("#studentDetails").text("Student not found.");
+          }
+        },
+        error: function (xhr) {
+          console.log(xhr.responseText)
+          $("#studentDetails").text('Error: ' + xhr.responseText);
+        }
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Student Registry</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Create a Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Student Registry</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="addStudent.html">Add Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="updateStudent.html">Update Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="deleteStudent.html">Delete Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="displayStudent.html">Display Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="listStudents.html">List All Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="searchStudent.html">Search Student</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Welcome Message -->
+  <div class="container mt-4">
+    <h1>Welcome to Student Registry App</h1>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="container mt-4">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" id="searchInput" placeholder="Search by Last Name">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStudent()">Search</button>
+    </form>
+  </div>
+
+  <!-- Include Bootstrap JavaScript and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
